@@ -17,11 +17,11 @@ module Api
    end
 
    def most_recent_avg_download_speed(place)
-    place.internet_speeds.order("created_at").last.download_speed
+    place.internet_speeds.order("created_at").last&.download_speed
     end
 
    def most_recent_download_speed_units(place)
-    place.internet_speeds.order("created_at").last.download_units
+    place.internet_speeds.order("created_at").last&.download_units
     end
 
    def number_of_measurements(place)
