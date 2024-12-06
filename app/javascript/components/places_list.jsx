@@ -20,7 +20,7 @@ function PlacesList() {
   const dataSection = loadedPlaces.map((place, index) => (
     <div key={index}>
       <table>
-        <tr>
+        <tr className="flex flex-row text-indigo-700">
           <th>Name</th>
           <th>City</th>
           <th>Recent Upload Speed</th>
