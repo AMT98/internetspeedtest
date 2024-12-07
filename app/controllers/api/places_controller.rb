@@ -2,6 +2,7 @@ module Api
   class PlacesController < ApplicationController
 
     def index
+      matching_places = get_matching_places(params["search_term"])
       places = Place.all.map do |place|
         {
           name: place.name,
@@ -28,6 +29,13 @@ module Api
     place.internet_speeds.count
     end
 
+    def get_matching_places(search_term)
+      if search_term.blank?
+        Place.all
+      else
+        Place.where("name LIKE :search_term OR city LIKE :search_term", search_term: "%#{search_term}%")
+      end
+    end
 
   end
 end
