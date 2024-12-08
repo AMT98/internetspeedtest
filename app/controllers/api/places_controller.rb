@@ -3,7 +3,7 @@ module Api
 
     def index
       matching_places = get_matching_places(params["search_term"])
-      places = Place.all.map do |place|
+      places = matching_places.map do |place|
         {
           name: place.name,
           city: place.city,
@@ -12,10 +12,10 @@ module Api
           number_of_measurements: number_of_measurements(place)
         }
       end
-
-      render(json: { places: places } )
-
-   end
+    
+      render(json: { places: places })
+    end
+    
 
    def most_recent_avg_download_speed(place)
     place.internet_speeds.order("created_at").last&.download_speed

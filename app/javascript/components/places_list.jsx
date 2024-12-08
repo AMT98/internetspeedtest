@@ -47,9 +47,11 @@ function PlacesList() {
   const [loading, setLoading] = useState(true);
   const [loadedPlaces, setLoadedPlaces] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [sortColumn, setSortColumn] = useState("name")
+  const [sortOrder, setSortOrder] = useState("asc")
 
   useEffect(() => {
-    const apiEndpoint = `/api/places?search_term=${searchTerm}`;
+    const apiEndpoint = `/api/places?search_term=${searchTerm}&sort_column=${sortColumn}&sort_order=${sortOrder}`
     fetch(apiEndpoint)
       .then((response) => response.json())
       .then((data) => {
